@@ -21,4 +21,7 @@ module.exports = {
   //   connection: 'someMongodbServer'
   // }
 
+  tokenExpiration: 7,  // minutes
+  jwtSecret: 'take your time'
+
 };
