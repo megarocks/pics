@@ -12,8 +12,22 @@ services:
       - "mongo"
     depends_on:
       - "mongo"
+  api-app:
+      build:
+        context: api-app
+        dockerfile: Dockerfile
+      image: vitality/api-app
+      container_name: api-app
+      ports:
+        - "3338:1337"
+      links:
+        - "mongo"
+      depends_on:
+        - "mongo"
   mongo:
     image: "mongo"
+    ports:
+      - 27018:27017
     volumes:
       - mongo-storage:/data/db
 
