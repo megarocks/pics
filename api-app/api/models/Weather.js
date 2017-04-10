@@ -23,9 +23,10 @@ module.exports = {
     })
   },
 
-  cache: (lat, lon, cnt, weather) => {
-    return Weather.findOrCreate({ lat, lon, cnt }, { lat, lon, cnt, weather })
-  },
+  cache: (lat, lon, cnt, weather) => co(function *() {
+    yield Weather.destroy({ lat, lon, cnt });
+    return Weather.create({ lat, lon, cnt, weather })
+  }),
 
   getByCoordinates: (lat, lon, cnt = 13) => co(function *() {
     const weatherFromCache = yield Weather.getCached(lat, lon, cnt);
