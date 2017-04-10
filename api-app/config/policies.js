@@ -28,6 +28,10 @@ module.exports.policies = {
 
   // '*': true,
 
+  WeatherController: {
+    '*': 'jwt'
+  }
+
   /***************************************************************************
   *                                                                          *
   * Here's an example of mapping some policies to run before a controller    *
