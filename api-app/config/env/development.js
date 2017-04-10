@@ -23,5 +23,6 @@ module.exports = {
 
   jwtSecret: 'take your time',
   weatherApiUrl: 'http://api.openweathermap.org/data/2.5',
+  weatherApiKey: '47a19f0ab37d0c7623433276a37b7449',
   weatherCacheTimeout: 10,  // minutes
 };
