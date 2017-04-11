@@ -44,7 +44,7 @@ module.exports = {
       json: true
     };
 
-    sails.log.debug('Fetching weather from provider');
+    sails.log.debug('Fetching weather from provider ', weatherApiOptions);
     const weather = yield rp(weatherApiOptions);
     const cachedWeather = yield Weather.cache(lat, lon, cnt, weather);
     return Promise.resolve(cachedWeather);

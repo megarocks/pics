@@ -3,8 +3,15 @@ const co = require('co');
 module.exports = {
 
   index: (req, res) => co(function *() {
-    const { lat, lon, cnt } = req.params.all();
-    if (!lat || !lon) return res.badRequest();
+    let { lat, lon, cnt } = req.params.all();
+    if (!lat || !lon) {
+      const { ip } = req;
+      const ipGeoData = yield GeoLocation.getCoordinatesByIp(ip);
+      if (!ipGeoData) return res.badRequest('can`t identify location');
+
+      lat = Math.floor( ipGeoData.lat ) ;
+      lon = Math.floor( ipGeoData.lon ) ;
+    }
 
     try {
       const weather = yield Weather.getByCoordinates(lat, lon, cnt);
