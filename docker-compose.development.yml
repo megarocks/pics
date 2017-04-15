@@ -3,7 +3,7 @@ services:
   auth-app:
     build:
       context: auth-app
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.development
     image: vitality/auth-app
     container_name: auth-app
     ports:
@@ -12,10 +12,13 @@ services:
       - "mongo"
     depends_on:
       - "mongo"
+    volumes:
+      - ./auth-app:/app
+      - auth-app-node-modules:/app/node_modules
   api-app:
       build:
         context: api-app
-        dockerfile: Dockerfile
+        dockerfile: Dockerfile.development
       image: vitality/api-app
       container_name: api-app
       ports:
@@ -24,6 +27,9 @@ services:
         - "mongo"
       depends_on:
         - "mongo"
+      volumes:
+        - ./api-app:/app
+        - api-app-node-modules:/app/node_modules
   client-app:
         build:
           context: client-app
@@ -51,5 +57,7 @@ services:
 volumes:
   mongo-storage:
   client-app-node-modules:
+  auth-app-node-modules:
+  api-app-node-modules:
 
 
