@@ -26,7 +26,7 @@ class App extends Component {
         <Provider store={store}>
           <MuiThemeProvider muiTheme={muiTheme}>
             <Paper zDepth={1} className="App">
-
+              <span>Client app will be here</span>
             </Paper>
           </MuiThemeProvider>
         </Provider>

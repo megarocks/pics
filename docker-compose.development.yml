@@ -27,11 +27,14 @@ services:
   client-app:
         build:
           context: client-app
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile.development
         image: vitality/client-app
         container_name: client-app
         ports:
-          - "80:5000"
+          - "3000:3000"
+        volumes:
+          - ./client-app:/app
+          - client-app-node-modules:/app/node_modules
         links:
           - "auth-app"
           - "api-app"
@@ -47,5 +50,6 @@ services:
 
 volumes:
   mongo-storage:
+  client-app-node-modules:
 
 
